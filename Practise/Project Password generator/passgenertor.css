@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db;
+    width: 100%;
+    height: 100vh;
+}
+
+.box {
+    min-width: 400px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #6c5ce7;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
+    margin-top: 10px;
+
+
+}
+
+.display {
+    margin: 15px;
+    width: auto;
+    height: 100px;
+    background-color: antiquewhite;
+    padding: 10px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    justify-content: space-between;
+}
+
+
+.password-boxes {
+    width: 100%;
+    margin: 10px;
+    font-size: larger;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+label {
+    user-select: none;
+}
+
+#charleng {
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+    width: 50px;
+    outline: none;
+    padding: 10px;
+    font-size: large;
+    margin-right: 15px;
+}
+
+#charleng::-webkit-outer-spin-button,
+#charleng::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#charleng {
+    -moz-appearance: textfield;
+}
+
+.check {
+    border: none;
+    border-radius: 5px;
+    width: 20px;
+    height: 22px;
+    margin-right: 15px;
+}
+
+#btn {
+    background-color: #636e72;
+    border: none;
+    width: auto;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 33.33%;
+    cursor: pointer;
+    color: #fff;
+
+}
+
+#btn:hover {
+    background-color: #3498db;
+    color: #2d3436;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+#copy {
+    color: #000;
+    align-self: flex-end;
+    text-decoration: underline;
+    cursor: pointer;
+
+
+}
+
+#copy:hover {
+    color: #3498db;
+
+
+}

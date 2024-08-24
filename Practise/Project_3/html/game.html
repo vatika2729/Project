@@ -1,0 +1,68 @@
+<!<!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Score Keeper</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/game.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+
+    </head>
+
+    <body>
+        <section class="section">
+
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-half is-offset-one-quarter">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">Ping Pong Score Keeper</p>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    <h1 class="title is-1"> <Span id="fScore">0</Span> to <Span id="sScore">0</span>
+                                    </h1>
+                                    <p class="subtitle">Use the button below to keep score.</p>
+                                    <label for="maxNo" class="label is-large is-inline">Playing To</label>
+                                    <div class="select is-rounded">
+                                        <select name="numm" id="maxNo">
+                                            <option value="3">3</option>
+                                            <option value="5">5</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="12">12</option>
+                                            <option value="15">15</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <button id="playerone" class="is-primary button card-footer-item">+1 Player One</button>
+                                <button id="playertwo" class="is-info button card-footer-item">+1 Player Two</button>
+                                <button id="reset" class="is-danger button card-footer-item">Reset</button>
+
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <script src="../js/game.js" async defer></script>
+    </body>
+
+    </html>

@@ -1,0 +1,130 @@
+* {
+    background-color: none;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    background-color: #f9f9f9;
+
+}
+
+
+
+header {
+    font-family: inter_regular, fallback-inter_regular, Arial, sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    position: sticky;
+
+
+
+}
+
+span {
+    background-color: white;
+
+}
+
+.header {
+    padding: 0.9rem 0em 0.9rem 0;
+    align-content: center;
+    font-size: 0.8em;
+}
+
+input {
+    align-self: center;
+    flex-basis: 50%;
+    padding: 0.6em;
+    border-radius: 0.35em;
+    font-size: medium;
+    border: none;
+
+}
+
+#logo {
+    font-weight: 700;
+    font-size: 1.10em;
+    color: #287FF0;
+    font-style: italic;
+    margin-left: 2em;
+}
+
+#plus {
+
+    font-size: 0.5em;
+    display: flex;
+    color: #FFE11B;
+
+}
+
+#seller {
+    margin-right: 1.25em;
+}
+
+.header:hover {
+    cursor: pointer;
+
+}
+
+.test {
+    background-color: white;
+    align-content: center;
+}
+
+.test .button {
+
+
+    background-color: white;
+    display: flex;
+    padding-right: 0.5em;
+
+}
+
+#login {
+    line-height: 0.5em;
+    padding-left: 0.5em;
+
+}
+
+.test #icon {
+
+    transform: rotate(180deg);
+
+}
+
+#icon {
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.4em;
+    font-size: 0.9em;
+    align-self: center;
+}
+
+.test:hover .button {
+
+    background-color: #287FF0;
+    border-radius: 0.4em;
+}
+
+.test:hover .button #login {
+
+    background-color: #287FF0;
+    border-radius: 0.4em;
+}
+
+.test:hover #icon {
+    background-color: #287FF0;
+    transform: rotate(0deg);
+    align-self: center;
+    font-size: 0.9em;
+}
+
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+        align-items: center;
+
+    }
+}

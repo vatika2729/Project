@@ -8,33 +8,33 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Add Products</title>
+        <title>Edit Products</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
 
     <body>
-        <form action="/products" method="post">
+        <form action="/products/<%= product._id %>?_method=PUT" method="post">
             <h1>Add Products</h1>
             <label for="Name">Product Name</label>
-            <input type="text" name="name" id="name" placeholder="Product Name">
+            <input type="text" name="name" id="name" placeholder="Product Name" value="<%= product.name %>">
             <label for="price">Price</label>
-            <input type="numeric" name="price" id="price" placeholder="Product Price">
+            <input type="numeric" name="price" id="price" placeholder="Product Price" value="<%= product.price %>">
             <label for="category">Select Category</label>
             <select name="category" id="category">
                 <% for( let category of categories) { %>
-                    <option value="<%=category %>">
+                    <option value="<%=category %>" <%=product.category===category ? 'selected' : '' %>>
                         <%= category %>
                     </option>
                     <% } %>
-
-
             </select>
             <button>Submit</button>
         </form>
 
-
+        <a href="/products/<%= product._id %>">
+            Back
+        </a>
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>

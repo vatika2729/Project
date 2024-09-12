@@ -4,6 +4,7 @@ const path = require('path');
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const Product = require('./models/product');
+const Farm = require('./models/farm');
 
 
 
@@ -40,7 +41,82 @@ app.use(methodOverride('_method'))
 
 
 // created dynamic category and loop over under the new.ejs and edit.ejs
-const categories = ['fruit', 'vegetable', 'diary', 'plant', 'fungi'];
+const categories = ['fruit', 'vegetable', 'dairy', 'plant', 'fungi'];
+
+
+//Farm Routers
+app.get('/farms', async (req, res) => {
+
+
+    const farms = await Farm.find({})
+    res.render('farms/index', { farms })
+
+})
+
+
+app.get("/farms/new", (req, res) => {
+    res.render('farms/new')
+})
+
+app.get("/farms/:id", async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findById(id).populate('products');
+    res.render('farms/show', { farm });
+
+})
+
+
+app.get('/farms/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findById(id);
+    res.render('farms/edit', { farm });
+})
+
+
+
+app.post('/farms', async (req, res) => {
+    const farm = new Farm(req.body)
+    await farm.save();
+    res.redirect(`/farms/${farm._id}`)
+
+})
+
+app.put('/farms/:id', async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findByIdAndUpdate(id, req.body, { runValidators: true, new: true })
+    res.redirect(`/farms/${farm._id}`);
+})
+
+
+app.delete('/farms/:id', async (req, res) => {
+
+    const farm = await Farm.findByIdAndDelete(req.params.id);
+    res.redirect('/farms');
+})
+
+app.get('/farms/:id/products/new', (req, res) => {
+    const { id } = req.params;
+    res.render('products/new', { categories, id })
+
+})
+
+
+//adding relationship
+app.post('/farms/:id/products', async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findById(id);
+    const { name, price, category } = req.body;
+    const product = new Product({ name, price, category });
+    farm.products.push(product);
+    product.farm = farm;
+    await farm.save();
+    await product.save(); res.redirect(`/farms/${id}`);
+
+})
+
+//Product Routers
+
+
 //fetch the products 
 app.get('/products', async (req, res) => {
     const { category } = req.query;
@@ -62,18 +138,18 @@ app.get('/products/new', (req, res) => {
 
 
 // submit the post request and save to database
-app.post('/products', async (req, res) => {
-    const newProduct = new Product(req.body);
-    await newProduct.save();
-    console.log(newProduct)
-    res.redirect(`/products/${newProduct._id}`)
-})
+// app.post('/products', async (req, res) => {
+//     const newProduct = new Product(req.body);
+//     await newProduct.save();
+//     // console.log(newProduct)
+//     res.redirect(`/products/${newProduct._id}`)
+// })
 
 //Display the individual product
 app.get('/products/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await Product.findById(id)
-    console.log(product);
+    const product = await Product.findById(id).populate("farm", "name");
+    //console.log(product);
     res.render('products/show', { product });
 })
 

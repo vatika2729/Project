@@ -31,11 +31,34 @@ const seedDB = async () => {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new CampGround({
+            author: '66edda35ea152dfadc0fe977',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: `https://picsum.photos/400?random=${Math.random()}`,
+            geometry: {
+                type: 'Point',
+                coordinates: [`${cities[random1000].longitude}`, `${cities[random1000].latitude}`]
+            },
+
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id aliquid quos laborum iure assumenda soluta delectus ipsa quaerat cumque. Dolore mollitia harum cumque dolorem iure labore voluptatibus est voluptas distinctio.",
-            price
+            price,
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/dbklb0ciu/image/upload/v1727212117/YelpCamp/ygnuk1al5lrry9e9harj.png',
+                    filename: 'YelpCamp/ygnuk1al5lrry9e9harj'
+                },
+                {
+                    url: 'https://res.cloudinary.com/dbklb0ciu/image/upload/v1727212123/YelpCamp/dsiyikifay4a50nnjtty.png',
+                    filename: 'YelpCamp/dsiyikifay4a50nnjtty'
+                },
+                {
+                    url: 'https://res.cloudinary.com/dbklb0ciu/image/upload/v1727212123/YelpCamp/z1j5f5xqf0bjmfyv6vai.png',
+                    filename: 'YelpCamp/z1j5f5xqf0bjmfyv6vai'
+                },
+                {
+                    url: 'https://res.cloudinary.com/dbklb0ciu/image/upload/v1727212129/YelpCamp/rpugwopqkymibvytp9mv.png',
+                    filename: 'YelpCamp/rpugwopqkymibvytp9mv'
+                }
+            ]
         })
         await camp.save();
     }

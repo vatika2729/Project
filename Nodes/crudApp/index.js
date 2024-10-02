@@ -5,6 +5,8 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const Product = require('./models/product');
 const Farm = require('./models/farm');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 
 
@@ -32,12 +34,26 @@ app.listen(3000, () => {
 })
 
 
-//middleware 
+//middleware
+//create session
+const sessionOption = { secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false }
+app.use(session(sessionOption));
+
+//flash message
+app.use(flash())
+
 //set the url encoded, to make the post request
 app.use(express.urlencoded({ extended: true }));
 
 //Use to make put and delete request
 app.use(methodOverride('_method'))
+
+//middleware for the flash messaes to display on success
+
+app.use((req, res, next) => {
+    res.locals.messages = req.flash('success');
+    next();
+})
 
 
 // created dynamic category and loop over under the new.ejs and edit.ejs
@@ -77,6 +93,7 @@ app.get('/farms/:id/edit', async (req, res) => {
 app.post('/farms', async (req, res) => {
     const farm = new Farm(req.body)
     await farm.save();
+    req.flash('success', 'Farm added successfully');
     res.redirect(`/farms/${farm._id}`)
 
 })

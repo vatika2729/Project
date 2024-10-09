@@ -1,7 +1,8 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
+// if (process.env.NODE_ENV !== 'production') {
+//     require('dotenv').config();
+// }
 
+require('dotenv').config();
 
 
 const express = require('express');
@@ -12,6 +13,12 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+//use for security and mongoose enjection
+const mongoSanitize = require('express-mongo-sanitize');
+//security header
+const helmet = require('helmet');
+
+
 
 
 //require the express error file to pass status and message
@@ -58,11 +65,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 //setting up session
 
 const sessionConfig = {
+    name: 'session',
     secret: 'thisisascreatkey',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -70,8 +79,15 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false}));
 
-
+//using the mongoose injection prevention code
+app.use(
+    mongoSanitize({
+        allowDots: true,
+        replaceWith: '_',
+    }),
+);
 //using passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());

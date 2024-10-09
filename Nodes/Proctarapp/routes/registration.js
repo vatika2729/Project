@@ -36,15 +36,13 @@ router.route("/register")
 
 
 router.route("/login").post(passport.authenticate('local'), register.login);
-router.get('/auth', passport.authenticate('bearer', { session: false, failureRedirect: '/unauthorized' }), (req, res) => {
+router.get('/auth', passport.authenticate('bearer', { session: false }), (req, res) => {
     
             // If the token is valid, this code will be executed
-        res.send("You are authorized");
+        res.status(200).json("You are authorized");
    
 })
 
-router.get('/unauthorized', (req, res) => {
-    res.status('401').send("Invalid Token")
-})
+
 
 module.exports = router;
